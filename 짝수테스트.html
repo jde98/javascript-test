@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>짝수 테스트</title>
+	<style type="text/css">
+		div {border: 1px solid; display: inline-block; padding: 20px;}
+	</style>
+</head>
+<body>
+	<h1>숫자를 받아서 짝수 값의 합을 구하시오.</h1>
+	<div id="number_received"></div>
+	<div id="synthesis_view"></div>
+
+	<script type="text/javascript">
+
+		let inputArray = [];
+
+		let start = 0;
+		let end = prompt("몇개의 값을 입력하시겠습니까?", "");
+
+		if (nullCheck(end)) {
+			alert("값을 다시 입력해주세요.");
+
+			location.reload();
+		} else {
+			let status = false;
+
+			while(start < end){
+				inputArray[start] = prompt((start+1)+"번 입력하시오.","");
+
+				if (nullCheck(inputArray[start])) {
+					alert("값을 다시 입력하시오.");
+
+					status = true;
+
+					break;
+				}
+				start++;
+			}
+
+			if (status) {
+				location.reload();
+			}
+
+			let total = 0;
+
+			// for (var i = 0; i < inputArray.length; i++) {
+			// 	if (inputArray[i]%2 == 0) {
+			// 		total += Number(inputArray[i]);
+			// 	}
+			// }
+
+			inputArray.forEach(function (value, index){
+				if (value%2 == 0) {
+					total += Number(value);
+				}
+
+				console.log(index+"번"+value);
+			});
+
+			document.getElementById('number_received').innerHTML = "받은숫자 = "+inputArray.join(",");
+
+			document.getElementById('synthesis_view').innerHTML = "짝수의 합 = "+total;
+		}
+
+		function nullCheck(data) {
+			if (data==0 || data==null || isNaN(data)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+	</script>
+</body>
+</html>

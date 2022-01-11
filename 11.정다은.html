@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let ScoreMax = {
+            in_score: 0,
+            out_score: 0,
+
+            findMaxScore : function (ele) {
+                this.in_score = ele;
+                for (var i = 0; i < this.in_score.length; i++) {
+                    if (this.out_score < this.in_score[i]) {
+                        this.out_score = this.in_score[i];
+                    }
+                }
+                return this.out_score;
+            }
+        };
+
+        function scoreMin(inScore, outScore) {
+
+            this.findMinScore = function () {
+                for (var i = 0; i < inScore.length; i++) {
+                    if(outScore > inScore[i]){
+                        outScore = inScore[i];
+                    }
+                }
+                document.write("min = " + outScore + "<br>");
+            }
+
+        }
+        
+        let maxValue = ScoreMax.findMaxScore([10,50,100]);
+        let minValue = new scoreMin([50,30,40],100);
+        document.write("max = " + maxValue + "<br>");
+        minValue.findMinScore();
+        
+    </script>
+</body>
+
+</html>

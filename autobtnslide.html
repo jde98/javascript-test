@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul,
+        ol,
+        li {
+            list-style: none;
+            padding: 0;
+        }
+
+        #slideWrap {
+            width: 900px;
+            height: 500px;
+            position: relative;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+
+        #slide {
+            position: absolute;
+            width: 2700px;
+            height: 500px;
+            transition: 0.5s;
+            top: 0;
+            left: 0;
+        }
+
+        #slide li {
+            float: left;
+            width: 900px;
+            height: 500px;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;
+        }
+
+        #slide li img {
+            width: 900px;
+            height: 500px;
+        }
+
+        #slide.on1 {
+            left: 0px;
+        }
+
+        #slide.on2 {
+            left: -900px;
+        }
+
+        #slide.on3 {
+            left: -1800px;
+        }
+
+        .btn {
+            border: none;
+            z-index: 1;
+            position: absolute;
+            color: #fff;
+            font-size: 40px;
+            top: 220px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 0 10px 10px 0px;
+            padding: 0 8px 0 2px;
+        }
+
+        button:first-child {
+            left: 0;
+        }
+
+        button:last-child {
+            right: 0;
+            border-radius: 10px 0px 0px 10px;
+            padding: 0 2px 0 8px;
+        }
+
+        .btn:hover {
+            cursor: pointer;
+            color: #000;
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+
+        p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            background-color: #fff;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            border-radius: 10px;
+            height: 60px;
+            line-height: 60px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="slideWrap">
+        <ul id="slide">
+            <li><img src="http://www.v3wall.com/wallpaper/1920_1080/1002/1920_1080_20100206125009151562.jpg"
+                    alt="slide_img"></li>
+            <li><img src="https://t1.daumcdn.net/cfile/tistory/03329E48509C8C4B02" alt="slide_img"></li>
+            <li><img src="https://mblogthumb-phinf.pstatic.net/MjAxODAzMTlfNTIg/MDAxNTIxNDQ4Nzg2MzY2.KLS6-fMzW__VCiglop9dtwZFiu2Qab5hF8kmUdvjvRMg.6RYVe2Fx-LIEqIHHgN6JfZD8bUJh96NvA7Pn2otZXxog.JPEG.knicjin/beautiful_nature_wallpaper02.jpg?type=w800"
+                    alt="slide_img"></li>
+        </ul>
+        <p>이전, 다음 버튼으로 제어하는 슬라이드</p>
+        <button class="btn" onclick="prevSlide()">&lt;</button>
+        <button class="btn" onclick="nextSlide()">&gt;</button>
+    </div>
+    <script>
+        let slideTime = setInterval("slideShow()", 3000);
+        /*자동 슬라이드*/
+        document.getElementById("slideWrap").addEventListener("mouseover", function(){
+            console.log("mouseover");
+            clearInterval(slideTime);
+        });
+        document.getElementById("slideWrap").addEventListener("mouseout", function(){
+            console.log("mouseout");
+            slideTime = setInterval("slideShow()", 3000);
+        });
+
+        function slideShow() {
+            if (pos == -2700) {
+                pos = 0;
+            }
+            document.getElementById('slide').style.left = pos + "px";
+
+            pos += -status;
+        }
+
+        /*prevBtn, nextBtn*/
+
+        let pos = 0;
+        let status = 900;
+
+        function prevSlide() {
+            if (pos == 0) {
+                pos = -1800;
+
+                document.getElementById('slide').style.left = pos + "px";
+            } else {
+                pos += status;
+
+                document.getElementById('slide').style.left = pos + "px";
+            }
+        }
+
+        function nextSlide() {
+            if (pos == -1800) {
+                pos = 0;
+
+                document.getElementById('slide').style.left = pos + "px";
+            } else {
+                pos += -status;
+
+                document.getElementById('slide').style.left = pos + "px";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
